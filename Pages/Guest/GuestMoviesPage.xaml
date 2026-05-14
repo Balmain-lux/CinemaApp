@@ -1,0 +1,67 @@
+﻿<Page x:Class="CinemaApp.Pages.Guest.GuestMoviesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaApp.Pages.Guest"
+      mc:Ignorable="d" 
+     Title="Фильмы"
+      Background="{StaticResource SecondaryBrush}">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+                  Text="Добро пожаловать в кинотеатр!" 
+                  Style="{StaticResource PageTitle}"/>
+
+        <!-- Приглашение к регистрации -->
+        <Border Grid.Row="1" 
+                Style="{StaticResource CardBorder}"
+                Background="{StaticResource LightBrush}"
+                Margin="0,0,0,20">
+            <StackPanel Margin="15" Orientation="Horizontal">
+                <TextBlock Text="🔐" FontSize="24" Margin="0,0,15,0"/>
+                <StackPanel>
+                    <TextBlock Text="Зарегистрируйтесь, чтобы бронировать билеты!"
+                               FontWeight="SemiBold"
+                               FontSize="14"/>
+                    <TextBlock Text="Авторизованные пользователи могут бронировать места, получать скидки и оставлять отзывы."
+                               FontSize="12"
+                               Foreground="{StaticResource GrayBrush}"/>
+                </StackPanel>
+                <Button x:Name="btnGoToAuth" Content="Войти / Регистрация"
+                        Style="{StaticResource PrimaryButton}"
+                        Width="180"
+                        Height="35"
+                        VerticalAlignment="Center"
+                        Margin="15,0,0,0"
+                        Click="btnGoToAuth_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Фильтры по жанрам -->
+        <Border Grid.Row="2" 
+                Style="{StaticResource CardBorder}"
+                Margin="0,0,0,20">
+            <StackPanel Margin="10">
+                <TextBlock Text="Фильтры по жанрам" 
+                          FontSize="14" 
+                          FontWeight="SemiBold"
+                          Margin="0,0,0,10"/>
+                <WrapPanel x:Name="GenresPanel"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Сетка фильмов -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="MoviesPanel"/>
+        </ScrollViewer>
+    </Grid>
+</Page>

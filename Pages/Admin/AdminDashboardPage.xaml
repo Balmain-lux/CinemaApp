@@ -1,0 +1,161 @@
+﻿<Page x:Class="CinemaApp.Pages.Admin.AdminDashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaApp.Pages.Admin"
+      mc:Ignorable="d" 
+      Title="Панель администратора"
+      Background="{StaticResource SecondaryBrush}">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+                  Text="Панель администратора" 
+                  Style="{StaticResource PageTitle}"/>
+
+        <!-- Карточки статистики -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Карточка 1: Фильмы -->
+            <Border Grid.Column="0" 
+                    Style="{StaticResource CardBorder}"
+                    Margin="5"
+                    Background="{StaticResource WhiteBrush}">
+                <StackPanel>
+                    <TextBlock Text="🎬" FontSize="40" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtMovieCount" 
+                              Text="0" 
+                              FontSize="28" 
+                              FontWeight="Bold"
+                              Foreground="{StaticResource PrimaryBrush}"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock Text="Фильмов" 
+                              HorizontalAlignment="Center"
+                              Foreground="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Карточка 2: Пользователи -->
+            <Border Grid.Column="1" 
+                    Style="{StaticResource CardBorder}"
+                    Margin="5"
+                    Background="{StaticResource WhiteBrush}">
+                <StackPanel>
+                    <TextBlock Text="👥" FontSize="40" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtUserCount" 
+                              Text="0" 
+                              FontSize="28" 
+                              FontWeight="Bold"
+                              Foreground="{StaticResource PrimaryBrush}"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock Text="Пользователей" 
+                              HorizontalAlignment="Center"
+                              Foreground="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Карточка 3: Бронирования -->
+            <Border Grid.Column="2" 
+                    Style="{StaticResource CardBorder}"
+                    Margin="5"
+                    Background="{StaticResource WhiteBrush}">
+                <StackPanel>
+                    <TextBlock Text="🎫" FontSize="40" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtBookingCount" 
+                              Text="0" 
+                              FontSize="28" 
+                              FontWeight="Bold"
+                              Foreground="{StaticResource PrimaryBrush}"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock Text="Бронирований" 
+                              HorizontalAlignment="Center"
+                              Foreground="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Карточка 4: Выручка -->
+            <Border Grid.Column="3" 
+                    Style="{StaticResource CardBorder}"
+                    Margin="5"
+                    Background="{StaticResource WhiteBrush}">
+                <StackPanel>
+                    <TextBlock Text="💰" FontSize="40" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtRevenue" 
+                              Text="0" 
+                              FontSize="28" 
+                              FontWeight="Bold"
+                              Foreground="{StaticResource PrimaryBrush}"
+                              HorizontalAlignment="Center"/>
+                    <TextBlock Text="Выручка (руб)" 
+                              HorizontalAlignment="Center"
+                              Foreground="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Меню и контент -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Боковое меню -->
+            <Border Grid.Column="0" 
+                    Style="{StaticResource CardBorder}"
+                    Margin="0,0,10,0">
+                <StackPanel>
+                    <Button x:Name="btnStats" Content="📊 Статистика"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,5"
+                            Click="btnStats_Click"/>
+                    <Button x:Name="btnManageMovies" Content="🎬 Управление фильмами"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,5"
+                            Click="btnManageMovies_Click"/>
+                    <Button x:Name="btnManageSessions" Content="📅 Управление сеансами"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,5"
+                            Click="btnManageSessions_Click"/>
+                    <Button x:Name="btnManageEmployees" Content="👨‍💼 Управление сотрудниками"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,5"
+                            Click="btnManageEmployees_Click"/>
+                    <Button x:Name="btnManageHalls" Content="🏢 Управление залами"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,5"
+                            Click="btnManageHalls_Click"/>
+                    <Button x:Name="btnAllReviews" Content="📝 Все отзывы"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,5"
+                            Click="btnAllReviews_Click"/>
+
+                    
+
+                    <Button x:Name="btnDetailsStats" Content="📈 Детальная статистика"
+                            Style="{StaticResource SecondaryButton}"
+                            Margin="0,5"
+                            Click="btnDetailsStats_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Контентная область -->
+            <Frame x:Name="AdminContentFrame" 
+                   Grid.Column="1"
+                   NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Grid>
+</Page>

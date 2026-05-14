@@ -1,0 +1,126 @@
+﻿<Page x:Class="CinemaApp.Pages.Employee.EmployeeShiftsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:CinemaApp.Pages.Employee"
+      mc:Ignorable="d" 
+     Title="Мои смены"
+      Background="{StaticResource SecondaryBrush}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Мои смены" 
+                  Style="{StaticResource PageTitle}"
+                  Grid.Row="0"/>
+
+        <!-- Форма добавления смены -->
+        <Border Grid.Row="1" 
+                Style="{StaticResource CardBorder}"
+                Margin="0,0,0,20">
+            <StackPanel Margin="10">
+                <TextBlock Text="Добавить смену" 
+                          FontSize="16" 
+                          FontWeight="Bold"
+                          Margin="0,0,0,10"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Дата" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Начало" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Конец" Margin="5"/>
+
+                    <DatePicker x:Name="dpShiftDate" 
+                                Grid.Row="1" Grid.Column="0"
+                                Margin="5"
+                                Width="120"
+                                SelectedDate="{x:Static sys:DateTime.Today}"/>
+
+                    <TextBox x:Name="txtStartTime" 
+                             Grid.Row="1" Grid.Column="1"
+                             Text="09:00"
+                             Width="100"
+                             Margin="5"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <TextBox x:Name="txtEndTime" 
+                             Grid.Row="1" Grid.Column="2"
+                             Text="17:00"
+                             Width="100"
+                             Margin="5"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <Button x:Name="btnAddShift" Grid.Row="1" Grid.Column="3"
+                            Content="➕ Добавить"
+                            Style="{StaticResource PrimaryButton}"
+                            Width="150"
+                            Margin="5"
+                            Click="btnAddShift_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- Список смен -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="ShiftsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorder}" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock FontSize="16" FontWeight="Bold"
+                                               Foreground="{StaticResource PrimaryBrush}">
+                                        <Run Text="{Binding ShiftDate, StringFormat=dd.MM.yyyy}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Margin="0,5,0,0">
+                                        <Run Text="⏰ "/>
+                                        <Run Text="{Binding StartTime}"/>
+                                        <Run Text=" - "/>
+                                        <Run Text="{Binding EndTime}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Foreground="{StaticResource GrayBrush}">
+                                        <Run Text="📊 Длительность: "/>
+                                        <Run Text="{Binding ShiftHours}"/>
+                                        <Run Text=" часов"/>
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <Button x:Name="btnDeleteShift" Grid.Column="1" 
+                                        Content="🗑️ Удалить"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Width="120"
+                                        Foreground="{StaticResource PrimaryBrush}"
+                                        BorderBrush="{StaticResource PrimaryBrush}"
+                                        Click="btnDeleteShift_Click"
+                                        Tag="{Binding ShiftID}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

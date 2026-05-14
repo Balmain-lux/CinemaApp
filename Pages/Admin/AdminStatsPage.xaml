@@ -1,0 +1,107 @@
+﻿<Page x:Class="CinemaApp.Pages.Admin.AdminStatsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaApp.Pages.Admin"
+      mc:Ignorable="d" 
+     Title="Статистика"
+      Background="{StaticResource SecondaryBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Основная статистика" 
+                      Style="{StaticResource PageTitle}"
+                      Grid.Row="0"/>
+
+            <!-- Топ фильмов -->
+            <Border Grid.Row="1" 
+                    Style="{StaticResource CardBorder}"
+                    Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="🎬 Топ-5 популярных фильмов" 
+                              FontSize="18" 
+                              FontWeight="Bold"
+                              Margin="0,0,0,15"/>
+
+                    <!-- Простой список с использованием ListView -->
+                    <ListView x:Name="TopMoviesList" 
+                              BorderThickness="0"
+                              Background="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Movie.Title}" 
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" 
+                                               Text="{Binding BookingCount}"
+                                               Foreground="{StaticResource PrimaryBrush}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+
+            <!-- Статистика по дням -->
+            <Border Grid.Row="2" Style="{StaticResource CardBorder}">
+                <StackPanel>
+                    <TextBlock Text="📊 Бронирования по дням" 
+                              FontSize="18" 
+                              FontWeight="Bold"
+                              Margin="0,0,0,15"/>
+                    <DatePicker x:Name="datePicker" 
+                               SelectedDateChanged="datePicker_SelectedDateChanged"
+                               Width="200"
+                               Margin="0,0,0,15"/>
+
+                    <ListView x:Name="DailyStatsList" 
+                              BorderThickness="0"
+                              Background="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardBorder}" 
+                                        Margin="0,0,0,10">
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="120"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding Time}" 
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" 
+                                                   Text="{Binding MovieTitle}"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" 
+                                                   Text="{Binding HallName}"
+                                                   Foreground="{StaticResource GrayBrush}"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="3" 
+                                                   Text="{Binding Revenue, StringFormat={}{0:F2} руб}"
+                                                   Foreground="{StaticResource PrimaryBrush}"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

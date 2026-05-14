@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b110996e4c8141cf97090c74ffb69600" Name="Diagram1">
+        <EntityTypeShape EntityType="CinemaDBModel.Bookings" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.BookingSeats" Width="1.5" PointX="10.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.BookingStatuses" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Genres" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Halls" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.MovieGenres" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Movies" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.PaymentMethods" Width="1.5" PointX="11.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Payments" Width="1.5" PointX="13.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Reviews" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Roles" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Seats" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Sessions" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Shifts" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.Users" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.vw_EmployeeShifts" Width="1.5" PointX="5.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.vw_MovieReviews" Width="1.5" PointX="7.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.vw_MovieStatistics" Width="1.5" PointX="9.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaDBModel.vw_SessionsFullInfo" Width="1.5" PointX="11.75" PointY="11.375" IsExpanded="true" />
+        <AssociationConnector Association="CinemaDBModel.FK__Bookings__Sessio__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Bookings__Status__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Bookings__UserID__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__BookingSe__Booki__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Payments__Bookin__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__BookingSe__SeatI__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__MovieGenr__Genre__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Seats__HallID__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Sessions__HallID__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__MovieGenr__Movie__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Reviews__MovieID__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Sessions__MovieI__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Payments__Paymen__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Reviews__UserID__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Users__RoleID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaDBModel.FK__Shifts__Employee__5535A963" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,118 @@
+﻿<Page x:Class="CinemaApp.Pages.Admin.ManageHallsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaApp.Pages.Admin"
+      mc:Ignorable="d" 
+      Title="Управление залами"
+      Background="{StaticResource SecondaryBrush}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Управление залами" 
+                  Style="{StaticResource PageTitle}"
+                  Grid.Row="0"/>
+
+        <!-- Панель добавления -->
+        <Border Grid.Row="1" 
+                Style="{StaticResource CardBorder}"
+                Margin="0,0,0,20">
+            <StackPanel Margin="10">
+                <TextBlock Text="Добавить новый зал" 
+                          FontSize="16" 
+                          FontWeight="Bold"
+                          Margin="0,0,0,10"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Название зала" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Вместимость" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Описание" Margin="5"/>
+
+                    <TextBox x:Name="txtHallName" 
+                             Grid.Row="1" Grid.Column="0"
+                             Margin="5" Width="100"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <TextBox x:Name="txtCapacity" 
+                             Grid.Row="1" Grid.Column="1"
+                             Margin="5"
+                             Text="50"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <TextBox x:Name="txtDescription" 
+                             Grid.Row="1" Grid.Column="2"
+                             Margin="5" Width="100"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <Button x:Name="btnAddHall" Grid.Row="1" Grid.Column="3"
+                            Content="➕ Добавить"
+                            Style="{StaticResource PrimaryButton}"
+                            Width="150"
+                            Margin="5"
+                            Click="btnAddHall_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- Список залов -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="HallsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorder}" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock FontSize="16" FontWeight="Bold"
+                                               Foreground="{StaticResource PrimaryBrush}">
+                                        <Run Text="{Binding HallName}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Margin="0,5,0,0">
+                                        <Run Text="💺 Вместимость: "/>
+                                        <Run Text="{Binding Capacity}"/>
+                                        <Run Text=" мест"/>
+                                    </TextBlock>
+
+                                    <TextBlock Text="{Binding Description}"
+                                               Margin="0,5,0,0"
+                                               Foreground="{StaticResource GrayBrush}"/>
+                                </StackPanel>
+
+                                <Button x:Name="btnDeleteHall" Grid.Column="1" 
+                                        Content="🗑️ Удалить"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Width="120"
+                                        Foreground="{StaticResource PrimaryBrush}"
+                                        BorderBrush="{StaticResource PrimaryBrush}"
+                                        Click="btnDeleteHall_Click"
+                                        Tag="{Binding HallID}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

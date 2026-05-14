@@ -1,0 +1,145 @@
+﻿<Page x:Class="CinemaApp.Pages.Admin.ManageSessionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaApp.Pages.Admin"
+      mc:Ignorable="d" 
+       Title="Управление сеансами"
+      Background="{StaticResource SecondaryBrush}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Управление сеансами" 
+                  Style="{StaticResource PageTitle}"
+                  Grid.Row="0"/>
+
+        <!-- Панель добавления -->
+        <Border Grid.Row="1" 
+                Style="{StaticResource CardBorder}"
+                Margin="0,0,0,20">
+            <StackPanel Margin="10">
+                <TextBlock Text="Добавить новый сеанс" 
+                          FontSize="16" 
+                          FontWeight="Bold"
+                          Margin="0,0,0,10"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Фильм" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Зал" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Дата и время" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Цена" Margin="5"/>
+
+                    <ComboBox x:Name="cmbMovie" 
+                              Grid.Row="1" Grid.Column="0"
+                              DisplayMemberPath="Title"
+                              SelectedValuePath="MovieID"
+                              Margin="5"
+                              Height="35"/>
+
+                    <ComboBox x:Name="cmbHall" 
+                              Grid.Row="1" Grid.Column="1"
+                              DisplayMemberPath="HallName"
+                              SelectedValuePath="HallID"
+                              Margin="5"
+                              Height="35"/>
+
+                    <DatePicker x:Name="dpDate" 
+                                Grid.Row="1" Grid.Column="2"
+                                Margin="5"
+                                Width="120"
+                                HorizontalAlignment="Left"/>
+
+                    <TextBox x:Name="txtTime" 
+                             Grid.Row="1" Grid.Column="2"
+                             Text="14:00"
+                             Margin="125,5,5,5"
+                             Width="100"
+                             HorizontalAlignment="Left"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <TextBox x:Name="txtPrice" 
+                             Grid.Row="1" Grid.Column="3"
+                             Text="350"
+                             Margin="5"
+                             Width="100"
+                             Style="{StaticResource CustomTextBox}"/>
+
+                    <Button x:Name="btnAddSession" Grid.Row="1" Grid.Column="4"
+                            Content="➕ Добавить"
+                            Style="{StaticResource PrimaryButton}"
+                            Width="130"
+                            Margin="5"
+                            Click="btnAddSession_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- Список сеансов -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="SessionsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorder}" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock FontSize="16" FontWeight="Bold"
+                                               Foreground="{StaticResource PrimaryBrush}">
+                                        <Run Text="{Binding Movies.Title}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Margin="0,5,0,0">
+                                        <Run Text="📅 "/>
+                                        <Run Text="{Binding SessionDateTime, StringFormat=dd.MM.yyyy HH:mm}"/>
+                                        <Run Text=" | 🏢 "/>
+                                        <Run Text="{Binding Halls.HallName}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Margin="0,5,0,0"
+                                               Foreground="{StaticResource GrayBrush}">
+                                        <Run Text="💰 Цена: "/>
+                                        <Run Text="{Binding BasePrice, StringFormat={}{0:F2}}"/>
+                                        <Run Text=" руб."/>
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <Button x:Name="btnDeleteSession" Grid.Column="1" 
+                                        Content="🗑️ Удалить"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Width="120"
+                                        Margin="10,0"
+                                        Foreground="{StaticResource PrimaryBrush}"
+                                        BorderBrush="{StaticResource PrimaryBrush}"
+                                        Click="btnDeleteSession_Click"
+                                        Tag="{Binding SessionID}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>
